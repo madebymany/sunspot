@@ -2,7 +2,7 @@
 
 set +e
 
-gem update --system 1.8.25
+gem update --system 2.2.2
 
 solr_responding() {
   port=$1
