@@ -196,7 +196,31 @@ module Sunspot
       end
     end
 
-    Coordinates = Struct.new(:lat, :lng)
+    class Coordinates < Struct.new(:lat, :lng)
+      def to_indexed
+        "#{lat.to_f},#{lng.to_f}"
+      end
+    end
+
+    class Rect < Struct.new(:minX, :minY, :maxX, :maxY)
+      def to_indexed
+        [minX, minY, maxX, maxY].map(&:to_s).join(' ')
+      end
+    end
+
+    class Circle < Struct.new(:lat, :lng, :radius)
+      def to_indexed
+        "#{lat.to_f},#{lng.to_f} d=#{radius.to_f}"
+      end
+    end
+
+    class Polygon < Struct.new(:points)
+      def to_indexed
+        # WKT format
+        ps = points.map { |p| "#{p.lng.to_f} #{p.lat.to_f}" }.join(', ')
+        "POLYGON((#{ps}))"
+      end
+    end
 
     class ContextBoundDelegate
       class <<self

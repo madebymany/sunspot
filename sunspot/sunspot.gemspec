@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rsolr', '~>1.0.7'
   s.add_dependency 'pr_geohash', '~>1.0'
+  s.add_dependency 'georuby', '~>2.2.1'
 
   s.add_development_dependency 'rspec', '~>2.6.0'
 

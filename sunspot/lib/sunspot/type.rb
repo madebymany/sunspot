@@ -375,6 +375,16 @@ module Sunspot
       end
     end
 
+    class LocrptType < AbstractType
+      def indexed_name(name)
+        "#{name}_lr"
+      end
+
+      def to_indexed(value)
+        value.to_indexed
+      end
+    end
+
     class ClassType < AbstractType
       def indexed_name(name) #:nodoc:
         'class_name'
